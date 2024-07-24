@@ -200,5 +200,48 @@ git tag #列出所有存在的标签
 
 ## git别名
 
+```
+git config --global alias.co checkout
+```
 
+# 分支
+
+## 分支管理
+
+```
+git branch -v #查看所有分支最后一次提交
+
+```
+
+## 远程分支
+
+## 变基
+
+```
+rebase命令可以将一个分支上的所有修改提交到另一分支上
+
+such as:
+git checkout experiment
+git rebase main
+
+```
+如下图:
+![[Pasted image 20240723145412.png]]
+然后到main分支上,进行一次快速合并
+```
+git checkout main
+git merge experiment
+```
+
+原理是:rebase命令执行时,先找到当前分支和目标基底分支的最近共同祖先分支(c2),然后根据当前分支的历次提交的修改信息与祖先的不同并创建一个临时文件,然后将分支指向基底分支c3,根据临时文件进行一次fast-forword合并,创建一个新的snapshot
+
+这样做的结果与merge没有任何区别,只是提交信息更加简洁,不用有合并的提交信息
+
+# 服务器git
+
+# 分布式git
+
+# github
+
+# git工具
 
