@@ -210,6 +210,7 @@ git config --global alias.co checkout
 
 ```
 git branch -v #查看所有分支最后一次提交
+git branch -r #列出所有远程分支
 
 ```
 
@@ -244,4 +245,69 @@ git merge experiment
 # github
 
 # git工具
+## 选择修订版本
+
+
+使用git show查看某一分支的顶端
+
+```
+git show branch1
+git show 59vd464
+```
+
+直接加名字和使用sha-1值效果相同
+
+```
+git rev-parse branch1
+```
+
+显示指定分支的sha-1值
+
+***
+
+使用
+```
+git reflog # 查看引用日志,每当head位置变化时该日志就会记录
+```
+
+可以使用
+```
+git log -g #查看类似git log的日志引用信息
+```
+
+**引用日志仅存在于本地仓库**
+
+***
+
+祖先引用
+
+使用'^'查看父引用
+
+git ~相同
+都是第一父提交
+
+git HEAD^2 会使用第二父提交(仅在合并后有用
+
+***
+双点
+
+```
+git log master..experiment
+```
+
+可以查看在experiment中但不在master中的提交
+
+可以使用origin/master来查看当前分支和远程分支的关系
+
+![[QQ_1722003041897.png]]
+
+***
+
+三点
+
+```
+git log A...B #查看在两个分支中的一个有而不被同时包含的
+```
+
+参数--left-right,指出某个提交具体属于哪个分支
 
