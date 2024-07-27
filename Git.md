@@ -311,3 +311,70 @@ git log A...B #查看在两个分支中的一个有而不被同时包含的
 
 参数--left-right,指出某个提交具体属于哪个分支
 
+## 交互式暂存
+
+```
+git add -i
+```
+
+## 贮藏与清理
+
+## 签署工作
+
+## 搜索
+
+```
+git grep <pattern> # 搜索当前目录文件中包含pattern字符串的位置
+```
+
+```
+git grep -n/--line-number str #显示包含str的行数
+git grep -c/--count str # 仅显示包含str的文件以及多少处包含了目标str
+git grep -p/--show-function str #显示字符串上下文信息
+```
+
+***
+
+git 日志搜索
+
+```
+git log -S str #搜索新增和删除该字符串的提交
+```
+
+使用-G选项进行正则表达式搜索
+
+***
+
+git函数log搜索
+
+```
+git log -L :funcname:filename
+git log -L start,end:filename
+```
+
+## 高级合并
+
+```
+git merge -Xignore-space-change filename # -Xignore-space-change选项忽略合并文件中的空白符
+```
+
+## Rerere
+
+## git调试
+
+```
+git blame -L begin,end filename #查看指定文件指定行数内的修改者及修改时间
+```
+ ***
+二分查找
+
+## 子模块
+
+## git打包
+
+## 替换
+
+# 自定义git
+
+### 配置Git
+
