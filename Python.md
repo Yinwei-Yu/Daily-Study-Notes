@@ -97,10 +97,7 @@ int（）函数将字符串转化为整数
 float（）将字符串转化为浮点数
 
 ### match
-match可以匹配单值，也可以匹配多值，也可以将匹配值绑定到变量
-也可以匹配列表
-case_ 表示默认情况
-示例：
+xxxxxxxxxx7 1​2ON DELETE SET NULL;-- 外键被删除后本表内对应值为NULL3​4ON DELETE CASCADE;-- 外键删除后本表内对应值删除5​6-- 如果一个属性既是primary key 又是 foreign key,则不能设置为SEY NULL7​mysql
 ~~~python
 age = 15
 match age:

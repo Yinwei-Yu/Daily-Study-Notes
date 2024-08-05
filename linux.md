@@ -1,5 +1,92 @@
 [[Unix  Linux大学教程 (哈恩) (Z-Library).pdf]]
 
+# 零碎知识&命令
+
+unix是一个多用户操作系统
+
+unix=内核+实用工具
+
+修改密码：passwd
+
+last [username]:
+
+​	显示用户上次或最近几次的登陆时间
+
+---
+
+运行级别:
+
+| 0    | 关机               |
+| ---- | ------------------ |
+| 1    | 单用户模式(命令行) |
+| 2    | 非标准化           |
+| 3    | 多用户模式:命令行  |
+| 4    | 非标准化           |
+| 5    | 多用户模式:GUI     |
+| 6    | 重新启动           |
+
+---
+
+
+
+> 使用 su  口令并输入密码成为超级用户
+
+
+
+---
+
+
+
+关机：shutdown [now] [time]
+
+重启:reboot
+
+init命令用于重新设置启动级别
+
+> 需要sudo权限
+
+
+
+---
+
+
+
+dmesg
+
+显示系统启动与关闭时的信息
+
+
+
+---
+
+
+
+^M 和 回车发送CR信号 ---返回信号
+
+^J 发送LF信号---换行信号
+
+- 可以认为是相同的
+
+总结:
+
+1. 返回字符=^M
+2. 换行字符=新行字符=^J
+3. 一般而言,每行文本必须以一个新行字符结束
+4. 按下回车,发送一个返回字符,unix自动将返回字符变为新行字符
+5. 终端上显示数据,每行必须是"返回+新行"结束
+
+
+
+---
+
+
+
+<^J>**stty sane**<^J> 
+
+<^J> **reset** <^J> 
+
+ 复原终端
+
 # 可立即使用的程序
 
 ## which type
@@ -385,6 +472,379 @@ set +o option
 set -o#人类阅读友好 
 set +o#脚本友好
 ```
+
+
+
+## 命令和定制
+
+### 元字符
+
+![image-20240805170058015](C:\Users\32284\AppData\Roaming\Typora\typora-user-images\image-20240805170058015.png)
+
+
+
+### 引用和转义
+
+
+
+按照字面解释元字符:
+
+反斜线,单引号,双引号
+
+---
+
+\
+
+转义字符
+
+改变的是元字符的模式
+
+
+
+---
+
+''
+
+单引号
+
+强引用
+
+单引号中的所有字符都按照字面解释
+
+---
+
+""
+
+双引号
+
+弱引用
+
+保留$ ` \ 的特殊含义
+
+
+
+---
+
+
+
+### 强引用和弱引用
+
+- 强引用
+
+\ 的引用是最强的
+
+可以引用新行字符
+
+\return 将会开启新的一行,但不表示结束(即不具有新行的含义)
+
+eg.
+
+~~~bash
+echo this is a long \
+long sentence that is \
+need to type a long time.
+
+~~~
+
+---
+
+- 单引号
+
+需要一对儿来标记结束
+
+bash家族shell会等待输入第二个引号
+
+c-shell家族会输出错误
+
+
+
+### shell内置命令 type
+
+使用
+
+``` type commandname``` 查看命令是否是内部命令
+
+
+
+---
+
+搜索shell手册中的builtin来学习内部命令
+
+
+
+使用```help -s command``` 来查看命令的语法
+
+
+
+### 外部命令以及搜索路径
+
+shell在PATH环境变量中查找外部命令
+
+
+
+### 修改搜索路径
+
+使用export命令使PATH成为环境变量
+
+```bash
+export PATH="/bin:/usr/bin:usr/ucb:/usr/local/bin"
+```
+
+各个名称之间使用冒号隔开,等号两边无空格
+
+该命令应置于登陆文件中
+
+----
+
+也可以添加自己的目录
+
+```shell
+export PATH="$PATH:$HOME/bin"
+```
+
+- 尽量将自己设置的目录放在系统原有设置目录之后,否则容易覆盖系统目录
+
+
+
+### shell提示
+
+使用```export PS1="$ "``` 来设置提示符
+
+---
+
+可综合使用变量的值
+
+eg.
+
+$USDER 
+
+$PWD
+
+下面列出了常用环境变量:
+
+![image-20240805172306568](C:\Users\32284\AppData\Roaming\Typora\typora-user-images\image-20240805172306568.png)
+
+### 引用变量时使用的引号
+
+变量有变化使用单引号
+
+变量不变化使用双引号
+
+eg.
+
+```bash
+export PS1='Your lucky number is ${RANDOM} $ '
+export PS1="${USER}"
+```
+
+第一条里$ 符号保留为\$符号,在使用这个变量时才会解释为元字符
+
+第二条里 直接被解释为元字符,对变量进行展开
+
+
+
+### 转义字符的特殊码
+
+![image-20240805172910768](C:\Users\32284\AppData\Roaming\Typora\typora-user-images\image-20240805172910768.png)
+
+### 命令替换
+
+允许在一条命令中嵌入另一个命令
+
+```bash
+echo "The time and date are 'date'."
+```
+
+先运行date命令,在将date命令的结果嵌入到echo命令中传递给echo命令
+
+
+
+---
+
+basename可以抽取任何路径名的最后一个部分
+
+---
+
+
+
+### 键盘输入删除快捷操作
+
+^W删除刚才输入的一个单词
+
+\^U或\^X删除整行
+
+使用stty显示系统上所有的键映射
+
+^D删除光标后的一个字符
+
+
+
+### 历史列表fc history
+
+使用上下箭头查看一条历史命令
+
+每一个命令在历史列表中称为事件
+
+---
+
+fc -l
+
+history
+
+都可以显示历史列表
+
+---
+
+fc -s num
+
+! num
+
+使用编号为num的命令
+
+---
+
+fc -s
+
+!!
+
+使用上一条命令
+
+---
+
+fc -s pattern=replacement number
+
+pattern和replacement都是字符串 number是事件编号
+
+eg.
+
+**25 vi temp**
+
+**fc -s temp=data 25**
+
+---
+
+也可以修改某一部分
+
+eg.
+
+```bash
+datq
+fc -s q=e
+```
+
+
+
+### 设置历史记录大小
+
+```bash
+export HISTSIZE=50
+```
+
+
+
+- 养成先查看文件再删除文件的习惯
+
+> 使用ls和rm结合,用历史替换进行快速操作
+
+
+
+### 自动补全
+
+bash支持:
+
+1. 文件名和目录名
+2. 命令
+3. 变量
+4. 用户标识
+5. 主机名(联网)
+
+- 连续按tab键会显示出所有匹配的选项
+
+
+
+### 别名 alias
+
+```bash
+alias [name=commands]
+```
+
+等号两边不能有空格
+
+commands包含一个或多个命令,看情况使用引号
+
+使用```unalias``` 移除别名
+
+---
+
+使用```\ls``` 临时挂起别名
+
+### 别名示例,避免删除文件
+
+```bash
+ls temp*
+fc -s ls=rm
+alias del 'rm \!ls:*'
+
+```
+
+### 从历史列表中重用命令
+
+```bash
+alias h=history
+
+alias r="fc -s"
+# this is a example
+vi tempfile
+r tempfile=data
+ 
+#gei a alias to alias it self
+alias a=alias
+
+```
+
+ ## 初始化文件
+
+
+
+初始化文件:
+
+登陆文件
+
+环境文件
+
+
+
+---
+
+
+
+### 点文件和rc文件
+
+点文件是隐藏文件
+
+使用ls -a查看所有文件
+
+环境文件以rc结尾,意为:running command
+
+
+
+### 执行初始化文件的时机
+
+登录shell执行登陆文件和环境文件
+
+非登录shell执行环境文件
+
+- bash的登录shell只执行登录文件而不执行环境文件
+
+### 脚本注释
+
+shell使用#作为注释标志
+
+
+
+
+
+
 
 
 
