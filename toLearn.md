@@ -1,6 +1,6 @@
 c++ [[C++ Primer (第5版中文版) .pdf]]
 
-linux [[Unix  Linux大学教程 (哈恩) (Z-Library).pdf]]
+linux [[Unix  Linux大学教程 (哈恩) (Z-Library).pdf]] √
 
 数据结构c++语言描述 [[数据结构、算法与应用 C++语言描述.pdf]]
 
