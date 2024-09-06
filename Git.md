@@ -389,5 +389,4 @@ git blame -L begin,end filename #查看指定文件指定行数内的修改者�
 
 ## git钩子
 
-[[progit#^hln5fgdxlg9|删除远程分支]]
 
