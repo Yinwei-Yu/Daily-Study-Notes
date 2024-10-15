@@ -405,7 +405,7 @@ L1为一个地址
 
 [[Chapter_02-RISC-V.pdf#page=47&selection=2,0,2,14|Chapter_02-RISC-V, 页面 47]]
 
-ascll 码
+ascii 码
 unicode 码-兼容ascll码
 变长编码
 
@@ -528,4 +528,24 @@ mulhsu # 同上,但是一个是无符号一个是有符号
 rem->取余数
 
 ## ALU
+
+[[Chapter_03.pdf#page=17&selection=0,0,0,3|Chapter_03, 页面 17]]
+
+详见附录A
+
+数据选择通路
+
+支持slt和bne指令：
+
+Set信号判断是否小于
+
+溢出检测模块四个输入,a,b,Binvert,Carryout,a+b
+
+## 浮点数
+
+[[IEEE-754]]
+
+> 硬件设计
+
+![[Pasted image 20241011093542.png]]
 
