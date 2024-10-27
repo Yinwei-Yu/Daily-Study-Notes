@@ -1,9 +1,3 @@
-[[计算机组成与设计：硬件软件接口 RISC-V版.pdf]]
-
-课程目标:单处理器计算机系统中各部分的内部工作原理，组成结构以及相互连接方式，具有完整的计算机系统的整机概念
-
-周四下午两点半-五点半 计院c区 office hour A515
-
 # 绪论
 
 ![[Chapter_01.pdf]]
@@ -549,3 +543,278 @@ Set信号判断是否小于
 
 ![[Pasted image 20241011093542.png]]
 
+浮点计算硬件:
+1. 加减乘除
+2. 倒数(reciprocal)
+3. 开方
+4. 太慢了,即使用流水线也比整数运算器慢
+
+>浮点数寄存器
+
+32个浮点数寄存器
+f0~f31
+有64位,单精度浮点数存在低32位中
+全部给浮点数用
+
+## 浮点数运算指令
+
+1. fadd.s fsub.s fmul.s fdiv.s fsqrt.s
+2. fadd.d fsub.d fmul.d fdiv.d fsqrt.d
+3. feq.s flt.s fle.s 等于 小于 小于等于
+4. feq.d flt.d fle.d
+	1. 比较结果0或1放在整数目的寄存器中
+	2. 再使用beq和bne来跳转
+5. flw fld 取字,取双字
+6. fsw fsd
+7. B.cond 条件分支指令
+
+eg. 
+[[Chapter_03.pdf#page=45&selection=10,0,16,1|摄氏度华氏度转化]]
+
+# 第四章 处理器
+
+![[Chapter_04.pdf]]
+
+单周期处理器
+流水线
+
+支持RV32I,基本指令集
+
+>单周期处理器
+
+单发射
+
+一个cpu周期内只执行一条指令
+
+指令执行:
+1. 取指
+	1. pc地址发送给mem,mem将对应地址的指令发送给cpu
+	2. pc+4 -> pc
+2. 译码opcode func3 func7->由control进行
+	读操作数->datapath进行
+3. 执行指令
+
+![[Pasted image 20241016104611.png]]
+
+![[Pasted image 20241016104737.png]]
+
+## 逻辑部件
+
+1. 组合逻辑单元->执行指令
+2. state(sequential) elements 状态单元(时序单元)->D触发器构成->保存信息
+
+## 时序单元
+
+D触发器
+边缘触发器
+
+组合单元的输入来源于状态单元->保证运算的准确性和稳定性
+组合单元的输出输出到状态单元->保存运算结果
+
+## 设计数据通路
+
+需要有:寄存器,ALUs,MUXs,mem
+
+1. 取指令
+	1. pc->RF(寄存器),instruction memory(指令mem)
+	2. pc+4->adder
+2. 译码和读操作数
+	1. control
+	2. RF->读出寄存器中内容
+		1. ![[Pasted image 20241016111941.png]]
+		2. 上图解释:rs1,rs2,rd双端口读,单端口写;RegWrite控制写信号
+	3. 执行
+		1. R型指令:ALU,RF
+			1. 计算->ALU
+			2. 结果给上图中的Write Data
+		2. load:
+			1. ![[5953f37a00bee34da93b9827907a8820_720.jpg]]立即数产生单元
+			2. use ALU to caculate address,use 立即数产生单元(ImmGen)从指令中产生立即数
+			3. 读数据->使用Data Mem(数据存储器),memRead控制读取,memWrite控制写入
+			4. 写寄存器->使用RF(寄存器组)
+			5. 步骤最多,花费时间最长,决定了cpu周期的最小值
+		3. sw:
+			1. ALU,ImmGen
+			2. write data -> Data Memrory
+		4. branch instruction(以beq为例)
+			1. 是否相等->相减(ALU)
+			2. 根据Zero是否等于1
+				1. if zero\==1,pc=pc+Imm * 2 ->use another adder and shifter to caculate address
+				2. if zero\==0,pc=pc+4
+
+![[Pasted image 20241018150350.png]]
+
+## 控制通路设计
+
+![[Pasted image 20241018153301.png]]
+
+根据需要的元件设置不同的控制信号来选择具体单元
+
+> 根据真值表设计门电路：
+1. 组合逻辑->快速,但是设计复杂
+2. 存储型控制器->只读存储器ROM,读入指令的opcode和fun3和fun7,转化为rom地址,根据地址中指令类型,输出控制信号
+
+>指令所需时间控制cpu周期长短
+
+[[Chapter_04.pdf#page=40&selection=0,26,0,26|Chapter_04, 页面 40]]
+
+cpu周期=800ps
+
+## 多周期处理器
+
+cpu周期:每一步中最长的时间(如内存读)
+then lw 需要5步,需要5个周期,beq 3,sw 4,R 4
+
+不同的指令需要不同的周期数
+then 功能单元发生变化
+
+为了防止lw sw等读取数据冲掉指令,需要一个指令寄存器,为了保存数据,需要增加一个数据寄存器
+
+同单周期处理器,从寄存器中读出的数据存到额外两个数据寄存器,保证了ALU输入的数据不变
+
+## pipe line
+
+homework:1 6 7 13
+
+> 流水线级数
+
+做完一个事需要几个步骤
+
+例如5级流水线
+
+> 指令执行阶段
+
+1. IF:instruction fetch 取指
+2. ID:instruction decode & register read 译码和寄存器读写
+3. EX:execute operation or caculate 计算 
+4. MEM:access memory operand 访存
+5. WB:write back to register 写回
+
+cpu周期取上述步骤中所需时间最长的一步
+这样的流水线称为均匀流水线
+也有非均匀流水线
+
+==每条指令的时间并没有减少==
+
+> 加速比
+
+加速比用于衡量性能
+加速比取决于吞吐量(throughput->单位时间执行的指令的条数)
+
+指令延时未减少
+
+## 流水线设计
+
+1. IF->pc,IM,adder
+2. ID->RF
+3. EX->ALU
+4. MEM->DM
+5. WB->RF
+
+==处理RF重复使用问题:==
+前半周期RF写,后半周期RF读->前后之分解决后一条指令需要用到前一条指令计算结果的情况such as:`add x7,x8,x9` `sub x10,x7,x11`
+
+为了保存本级流水线执行的信息,在每个状态之间需要加上一个寄存器
+
+![[Pasted image 20241025144544.png]]
+### 流水线设计中的问题
+
+1. 结构冒险:一级中可能需要同时执行两个操作->增加功能单元
+2. 数据冒险:指令间的数据相关联(以上述为例)->[[Chapter_04.pdf#page=51&selection=0,9,10,12|Chapter_04, 页面 51]]
+	c1 c2 c3
+add IF  ID  EX
+sub      IF   ID(此时x7的数据还未更新)
+	how to tackle?
+	1. 阻塞(stall)
+		1. 上述sub指令ID后持续译码,在第五个周期读出来的是正确的数据(前半周期写后半周期读),阻塞了两个周期
+		2. 什么时候阻塞,就持续进行IF或者ID
+	2. "旁路"(前推)[[Chapter_04.pdf#page=52&selection=0,9,10,26|Bypassing(forwarding)]]
+		1. ALU输出送回ALU输入(rs1和rs2都要)->EX旁路
+		2. `lw x1 0(x2) sub x4,x1x5` ->MEM旁路
+			       c1   c2   c3   c4        c5
+		lw     IF     ID   EX   MEM   WB
+		sub           IF    ID    ID       EX(接收上条指令从mem到EX的数据)  仍然阻塞了一个周期
+		==R型的数据冒险可以完全解决,load指令仍需阻塞一个周期==
+	3. [[Chapter_04.pdf#page=54&selection=0,9,10,31|编译器优化]]
+3. 控制冒险:分支指令要在第四个周期才能计算出pc+imm * 2,但是此时beq指令下已经进来了三条pc+4指令,即存在错误指令
+	1. 阻塞(stull)
+		1. 后取出来的指令不执行,等着
+	2. 预测
+		1. 静态预测:risc-v总预测不发生分支
+		2. 动态预测:软硬件结合
+
+### 具体设计
+
+流水线cpu:
+	1. 数据通路
+	2. 控制通路
+
+数据通路上面已有
+控制通路:
+
+流水线分析图:单周期分析图
+
+> 单周期分析图->某个周期的情况
+
+1. load
+	1. IF:read IMM and pc+4->pc
+		1. IF/ID中有指令和pc
+	2. ID:decode instruction,read rs1 rs2,immGen
+		1. ID/EX中有rs1,rs2,imm,pc
+	3. EX:计算
+		1. EX/MEM有结果,pc+imm * 2 ,rs2
+	4. MEM:读内存
+		1. MEM/WB中存读取到的数据
+	5. WB:
+		1. 把读取的数据存回rd->有错误
+		2. so we need to store rd!->[[Chapter_04.pdf#page=68&selection=10,0,10,10|Chapter_04, 页面 68]]
+
+
+> 多周期分析图->多个周期的情况
+
+![[Pasted image 20241025150204.png]]
+
+### 控制信号 
+
+ALU控制器不变
+
+IF 和 ID不需要控制信号
+
+EX需要ALU control AluSrc
+
+MEM需要 MemWrite MemRead Branch PCsrc
+
+WB需要MemToReg
+
+> 流水线寄存器存储
+
+控制器放在ID阶段,控制信号存储在流水线寄存器中[[Chapter_04.pdf#page=76&selection=10,0,10,17|Chapter_04, 页面 76]]
+
+### 实现数据冒险解决方案->旁路
+
+> EX旁路
+
+ALU输入部分多加一个多路选择器,多加一个控制信号选择数据来源
+控制信号怎么产生?
+==条件:上一条指令的rd是下一条指令的rs1或rs2==
+==在上条指令的第四个周期时,rd在EX/MEM寄存器中==
+==下一条指令的rs1和rs2在ID/EXE中==
+==EXE/MEM中的rd!=0==
+==且上条指令一定有EX/MEM中RedWrite=1==
+
+即:
+ex/mem rd=id/ex rs1
+ex/mem rd=id/ex rs2
+且
+ex/mem rd != 0
+ex/mem RegWrite  =  1
+
+> 为了实现MEM旁路
+
+第一条指令的rd是第三条指令的rs1或rs2
+
+mem/wb rd= id/ex rs1
+mem/wb rd =id/ex rs2
+且
+mem/wb rd != 0
+mem/wb RegWrite = 1
