@@ -818,3 +818,67 @@ mem/wb rd =id/ex rs2
 且
 mem/wb rd != 0
 mem/wb RegWrite = 1
+
+### load 数据冒险
+
+[[Chapter_04.pdf#page=89&selection=10,1,12,15|Chapter_04, 页面 89]]
+
+需要阻塞一个周期，用到MEM旁路
+
+条件：
+ID/EXE rd=IF/ID rs1 or ID/EXE rd=IF/ID rs2
+且ID/EXE MemRead=1
+且rd!=0
+
+阻塞的方法:
+
+1. 写进ID/EXE的控制信号清零
+2. 第三个周期结束时不写IF/ID寄存器
+3. PC不写
+
+### branch控制冒险
+
+[[Chapter_04.pdf#page=93&selection=10,0,10,14|Chapter_04, 页面 93]]
+
+因为MEM阶段结束后,pc才拿到pc+imm * 2
+所以跳转到的指令第五个周期才能取到正确的指令地址
+有三条指令执行错误
+
+>静态预测
+
+只需要在发现分支后把EX/MEM,ID/EX,IF/ID清空即可(控制信号置0)
+浪费三个周期
+
+> EX
+
+将pc+imm * 2操作在EX阶段执行,可以少浪费一个周期
+
+> ID
+
+把branch判断移到ID阶段,两个ReadData进行异或来判断zero信号
+
+再节省一个周期
+
+但是!如果有了数据相关和数据冒险的话!
+[[Chapter_04.pdf#page=97&selection=10,1,14,14|Chapter_04, 页面 97]]
+需要额外增加到ID的旁路选择
+[[Chapter_04.pdf#page=98&selection=13,1,14,14|Chapter_04, 页面 98]]
+额外阻塞一个周期
+[[Chapter_04.pdf#page=99&selection=10,0,10,9|Chapter_04, 页面 99]]
+额外阻塞两个周期
+
+### branch动态预测
+
+挪到IF阶段,进行动态预测
+此时没法判断指令类型
+
+> 增加一个缓冲区(branch history table,BHT)
+
+表中存已经发生分支的指令
+
+| PC   | 指令  | 状态位   |
+| ---- | --- | ----- |
+| addr | beq | 0(或1) |
+|      |     |       |
+IF阶段在表格中寻找PC,若存在->状态为1->分支;状态为0->不分支
+若不存在,pc+4
