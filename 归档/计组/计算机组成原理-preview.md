@@ -1020,7 +1020,7 @@ DRAM高级技术:
 5. 同步:SDRAM:采用突发模式读取连续数据
 6. banking:多体交叉存储器
 	1. 4体
-	2. ![](附件/e5c03b0fd6a158390ea0ebe9a4869deb_720.jpg)
+	2. ![](../../附件/e5c03b0fd6a158390ea0ebe9a4869deb_720.jpg)
 
 ## flash storage 固态盘
 
