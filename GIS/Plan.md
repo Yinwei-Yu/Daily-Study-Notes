@@ -3,6 +3,7 @@
 ## 1. 地理信息系统基础知识
 
 ### 1.1 核心概念
+
 - **几何对象**: 点(Point)、线(LineString)、多边形(Polygon)等
 - **空间关系**: 包含(Contains)、相交(Intersects)、接触(Touches)等
 - **坐标系统**: WGS84、UTM等地理坐标系统
@@ -17,12 +18,14 @@
 ## 2. 学习资源推荐
 
 ### 2.1 入门资料
+
 1. **《PostGIS in Action》** - 空间数据库经典教材
 2. **OGC官方文档**: https://www.ogc.org/standards/sfa
 3. **GDAL文档**: https://gdal.org/
 4. **PostGIS教程**: https://postgis.net/workshops/
 
 ### 2.2 技术文档
+
 1. **GDAL/OGR C++ API**: https://gdal.org/api/
 2. **Go-Geom库**: https://github.com/twpayne/go-geom
 3. **空间索引算法**: R-tree、四叉树等
