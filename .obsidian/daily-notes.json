@@ -1,0 +1,5 @@
+{
+  "template": "templates/Daily Goal",
+  "folder": "Daily",
+  "format": "YYYY/Mo/YYYY-MM-DD"
+}

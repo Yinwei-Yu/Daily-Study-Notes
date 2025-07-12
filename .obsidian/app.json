@@ -1,0 +1,11 @@
+{
+  "attachmentFolderPath": "附件",
+  "showIndentGuide": true,
+  "promptDelete": false,
+  "alwaysUpdateLinks": true,
+  "newFileLocation": "current",
+  "newLinkFormat": "relative",
+  "useMarkdownLinks": true,
+  "strictLineBreaks": true,
+  "showLineNumber": false
+}
