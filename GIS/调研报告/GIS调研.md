@@ -391,10 +391,13 @@ collection_name=collection_name，
 Milvus中的索引建立由DataNode来完成。
 当SDK客户端发送建立索引的请求后，Milvus服务端并不会立刻进行索引的建立，而是将此请求写入日志，并通过一个channel将建立索引的信息发送给Datacoord。
 Datacoord会监听该channel，当它发现该请求后，会创建一个任务然后至于调度队列中，当任务被调度后，发送任务到一个DataNode。该DataNode将要建立索引的数据从对象存储中加载到内存，然后建立索引，再将数据和索引写入对象存储。需要注意的是，collection中有多个segment，DataNode会为每一个已经flush的segment建立单独的索引。
+由于R-Tree是动态索引，所以可以考虑自动索引构建，而不是让用户手动构建索引。现在有几个方案：
+1. 在插入数据时构建索引：实现起来较为简单，但是在bulk insert时会造成严重的性能下降
+2. 在flush操作时建立索引：在streaming node进行flush操作时，自动为数据建立索引
 
 为了支持Geometry类型的索引，大体需要修改：
 
-1. 参数检查阶段（Go 层）
+3. 参数检查阶段（Go 层）
 `pkg/util/typeutil/schema.go`：添加 `IsGeometryType` 判断函数 
 `internal/proxy/task_index.go` ：更新 `parseIndexParams` 支持 Geo 类型 
 `pkg/util/paramtable/autoindex_param.go`：在 `AutoIndexConfig` 中添加 Geo 类型索引配置项

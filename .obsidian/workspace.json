@@ -1,19 +1,19 @@
 {
   "main": {
-    "id": "a03ee2b7ee9456ec",
+    "id": "2f6ff2d2b198f4c2",
     "type": "split",
     "children": [
       {
-        "id": "8ba197278b2a1588",
+        "id": "8572e531c385740c",
         "type": "tabs",
         "children": [
           {
-            "id": "0508b39fcffd7b76",
+            "id": "9f61d5e44a565d4e",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "csapp/csapp-6-2-video.md",
+                "file": "GIS/调研报告/Geometry.h.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -28,7 +28,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "csapp-6-2-video"
+              "title": "Geometry.h"
             }
           }
         ]
@@ -37,15 +37,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "0852cdb19af69815",
+    "id": "d40d898d2001cebd",
     "type": "split",
     "children": [
       {
-        "id": "82c7106808f7fc43",
+        "id": "438cc93662b79c4e",
         "type": "tabs",
         "children": [
           {
-            "id": "9100fdbd86c709af",
+            "id": "0497df81947b83f1",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -58,12 +58,12 @@
             }
           },
           {
-            "id": "62e38a8713264ef6",
+            "id": "ba2b8414c8dec05b",
             "type": "leaf",
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "const",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -75,7 +75,7 @@
             }
           },
           {
-            "id": "d4393b1c5f3764e0",
+            "id": "5112f3c8ef6ad2d1",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -88,24 +88,24 @@
       }
     ],
     "direction": "horizontal",
-    "width": 241.5
+    "width": 235.5
   },
   "right": {
-    "id": "8e35b1292680ce81",
+    "id": "d67376feca9822e5",
     "type": "split",
     "children": [
       {
-        "id": "d85acd3757b4e621",
+        "id": "8f658bc0506a7c07",
         "type": "tabs",
         "children": [
           {
-            "id": "25121c898b53d2e3",
+            "id": "f48dade0b2dfdba6",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "计算机网络-preview.md",
-                "collapseAll": false,
+                "file": "GIS/调研报告/GIS调研.md",
+                "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
@@ -114,25 +114,25 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "计算机网络-preview 的反向链接列表"
+              "title": "GIS调研 的反向链接列表"
             }
           },
           {
-            "id": "4cea8ec226722a90",
+            "id": "25d09d79b2cfa527",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "计算机网络-preview.md",
+                "file": "zilliz/zilliz-日报/6-9.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "计算机网络-preview 的出链列表"
+              "title": "6-9 的出链列表"
             }
           },
           {
-            "id": "2303e79569a66db8",
+            "id": "c2ef98517b0de21a",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -147,100 +147,84 @@
             }
           },
           {
-            "id": "6acb141e2a46fa13",
+            "id": "6fd14ab6b1628065",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "暂放/Python.md",
+                "file": "GIS/调研报告/Geometry.h.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Python 的大纲"
-            }
-          },
-          {
-            "id": "96ccf061268df2a2",
-            "type": "leaf",
-            "state": {
-              "type": "git-view",
-              "state": {},
-              "icon": "git-pull-request",
-              "title": "Source Control"
+              "title": "Geometry.h 的大纲"
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 410.5,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
+      "janitor:Janitor: scan vault": false,
+      "media-extended:Open media": false,
+      "obsidian-git:Open Git source control": false,
+      "vscode-editor:新建代码文件": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
-      "command-palette:打开命令面板": false,
-      "janitor:Janitor: scan vault": false,
-      "media-extended:Open media": false,
-      "obsidian-git:Open Git source control": false,
-      "vscode-editor:新建代码文件": false
+      "command-palette:打开命令面板": false
     }
   },
-  "active": "0508b39fcffd7b76",
+  "active": "9f61d5e44a565d4e",
   "lastOpenFiles": [
-    "csapp/csapp-en-book.md",
-    "csapp/csapp-6-2-video.md",
-    "csapp/csapp-6-1-video.md",
-    "proto3.md",
-    "README.md",
-    "toLearn.md",
-    "change.md",
+    "GIS/调研报告/GIS调研.md",
     "GIS/调研报告/Query查询链路,从一个简单例子出发.md",
     "GIS/调研报告/storage层改了什么,为什么.md",
-    "GIS/调研报告/proxy层改了什么.md",
+    "GIS/调研报告/Geometry.h.md",
+    "GIS/调研报告/Expr解析层修改了什么.md",
+    "GIS/调研报告/StreamingNode的启动,和如何做到写入WAL以及消费WAL.md",
+    "c++/运算符重载.md",
+    "c++/类型转化运算符.md",
+    "c++/构造函数.md",
+    "csapp/csapp-6-2-video.md",
+    "csapp/csapp-6-1-video.md",
+    "GIS/调研报告/索引构建流程.md",
     "zilliz/milvus/架构分析/milvus写入链路.md",
+    "change.md",
+    "GIS/调研报告/Expr解析层修改了什么?.md",
+    "GIS/调研报告/proxy层改了什么.md",
+    "GIS/调研报告/interal-common层.md",
+    "GIS/调研报告/internal-segcore层.md",
+    "杂/布隆过滤器.md",
+    "杂/DML.md",
     "zilliz/milvus/架构分析/internal-storage.md",
-    "xv6/伙伴分配算法.md",
-    "技术文档/Milvus_local_RAG，笔记本也能跑的本地知识库 & RAG 来了.md",
-    "xv6",
-    "暂放/Python.md",
-    "暂放/计算机网络.md",
-    "计算机网络-preview.md",
-    "templates/Conclusion.md",
-    "templates/Daily Goal.md",
-    "templates/Question.md",
-    "暂放/c-sharp.md",
-    "code/rust/std",
-    "code/rust/snippet",
-    "code/go",
-    "code/rust/first try.rs",
-    "算法/堆.md",
-    "code/rust/first try.ts",
-    "Daily/2025/6月/2025-06-15.md",
-    "算法/前缀树Trie.md",
-    "算法/DP.md",
-    "Daily/2025/6月",
-    "Daily/2025",
-    "Daily/2025-06-15.md",
-    "Daily",
-    "templates/rust code snippet.rs",
-    "未命名.canvas",
-    "归档/引擎思维导图.jpg",
-    "附件/image1.png",
-    "附件/image3.png",
-    "附件/image4.png",
-    "附件/image.png",
-    "附件/Pasted image 20241030205648.png",
-    "附件/Pasted image 20241105195851.png",
-    "附件/Pasted image 20241204110803.png",
-    "附件/Pasted image 20241204103416.png",
-    "附件/Pasted image 20241129153620.png"
+    "toLearn.md",
+    "杂/Parquet Format.md",
+    "杂/离散数学和编程语言中都有的闭包，是一个玩意儿吗.md",
+    "附件/Pasted image 20250708153851.png",
+    "附件/截屏2025-07-08 15.34.04.png",
+    "附件/截屏2025-07-08 14.45.52.png",
+    "附件/截屏2025-07-08 14.44.53.png",
+    "附件/截屏2025-07-08 14.43.42.png",
+    "zilliz/milvus/proxy/proxy-代码架构.md",
+    "zilliz/milvus/架构分析/整体架构.md",
+    "zilliz/milvus/架构分析",
+    "附件/截屏2025-07-07 15.31.52.png",
+    "GIS/预调查与开发须知等",
+    "GIS/调研报告",
+    "c++",
+    "GIS",
+    "zilliz/milvus/streaming",
+    "zilliz/milvus/proxy",
+    "zilliz/milvus",
+    "go-routine",
+    "go/learn/func/func-as-arg.go"
   ]
 }
