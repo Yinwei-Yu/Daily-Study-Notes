@@ -11,13 +11,52 @@
             "id": "2b9cb9ce9833945e",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "GIS/调研报告/GIS调研.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "GIS调研"
+            }
+          },
+          {
+            "id": "ba33fdd34d9b9fa8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "GIS/调研报告/GIS-Search.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "GIS-Search"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -49,7 +88,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "const",
+                "query": "python",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -138,12 +177,13 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "GIS/调研报告/GIS-Search.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "大纲"
+              "title": "GIS-Search 的大纲"
             }
           }
         ],
@@ -167,15 +207,24 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "2b9cb9ce9833945e",
+  "active": "ba33fdd34d9b9fa8",
   "lastOpenFiles": [
+    "GIS/调研报告/GIS调研.md",
+    "GIS/调研报告/GIS-Search.md",
+    "暂放/Python.md",
+    "归档/proto3/1. Message.md",
+    "README.md",
+    "计算机网络-preview.md",
+    "todo.md",
+    "toLearn.md",
+    "temp/change.md",
+    "杂/布隆过滤器.md",
+    "杂/离散数学和编程语言中都有的闭包，是一个玩意儿吗.md",
+    "杂/hotfix.md",
     "归档/proto3/RPC.md",
     "归档/proto3/proto3.md",
     "归档/操作系统.md",
-    "计算机网络-preview.md",
-    "temp/change.md",
     "temp",
-    "归档/proto3/1. Message.md",
     "归档/proto3/9. Generate.md",
     "归档/proto3/8. JSON Map.md",
     "归档/proto3/7. Package.md",
@@ -188,15 +237,6 @@
     "归档/proto3",
     "zilliz/milvus/架构分析/internal-storage.md",
     "zilliz/milvus/streaming/streaming 概述.md",
-    "zilliz/milvus/streaming/streaming代码详解.md",
-    "GIS/调研报告/Geometry.h.md",
-    "GIS/调研报告/GIS调研.md",
-    "GIS/调研报告/Query查询链路,从一个简单例子出发.md",
-    "GIS/调研报告/storage层改了什么,为什么.md",
-    "GIS/调研报告/Expr解析层修改了什么.md",
-    "GIS/调研报告/StreamingNode的启动,和如何做到写入WAL以及消费WAL.md",
-    "c++/运算符重载.md",
-    "c++/类型转化运算符.md",
     "附件/Pasted image 20250708153851.png",
     "附件/截屏2025-07-08 15.34.04.png",
     "附件/截屏2025-07-08 14.45.52.png",
