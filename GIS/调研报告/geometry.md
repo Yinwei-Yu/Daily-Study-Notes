@@ -140,7 +140,7 @@ These functions are used to determine whether the distance between two geometric
 
 To speed up querying, it is necessary to create an index for geographic information data. In a standard database, whether scalar or vector, indexes are built based on the values of the indexed columns, but it is different for spatial indexes because the database cannot directly index the values of geometric fields, that is, the geometric objects themselves. Therefore, it is necessary to index the **bounding box** of geometric objects. The following example is from the PostGIS documentation:
 
-![](https://zilliverse.feishu.cn/space/api/box/stream/download/asynccode/?code=NTNhNGI0YWQzNWZlOTcxNGEyMGJiMGExYzQ5YjExMTBfbkR0WTVwV2R2T2pIMnA4bEVQRHhFeTJWM2RoYU12OTZfVG9rZW46RlhmQWJPWGYwb0RnTHd4SVpuVWM0ODVGbnZ6XzE3NTI4MTkwMTY6MTc1MjgyMjYxNl9WNA)
+![_images/bbox.png](https://postgis.net/workshops/zh_Hans/postgis-intro/_images/bbox.png)
 
 In the figure above, the number of lines intersecting the yellow star is **1** , which is the red line. However, the range boxes intersecting the yellow box include the red and blue ones, a total of 2.
 
