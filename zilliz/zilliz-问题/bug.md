@@ -1,3 +1,2 @@
 1. 编解码对Geometry没有保留arrow的null-bitmap,在parquet的无效行调用appendnull.
 2. Array构造函数缺少Geometry的相关内容
-3. geometry的空值支持
